@@ -1,6 +1,8 @@
 NAME = PongCraft
 
 SRC     := 	main.cpp \
+			Block.cpp \
+
 			
 
 OBJ     := $(SRC:.cpp=.o)
