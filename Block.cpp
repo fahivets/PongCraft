@@ -2,38 +2,19 @@
 **
 **
 */
-
+#define BLOCK_SIZE 32 //TODO: think about that
 #include "Block.hpp"
 
-Block::Block(Block::Type type) : m_x(0), m_y(0), m_type(type)
+// может нужно будет в факторы передавать позицию
+Block::Block(Block::Type type) : Movable(0, 0), m_type(type)
 {}
 
-Block::Block(unsigned int x, unsigned int y, Block::Type type) : m_x(x), m_y(y), m_type(type)
+Block::Block(unsigned int x, unsigned int y, Block::Type type) : Movable(x, y), m_type(type)
 {}
-
-unsigned int	Block::getX() const
-{
-	return (m_x);
-}
-
-unsigned int	Block::getY() const
-{
-	return (m_y);
-}
 
 Block::Type		Block::getType() const
 {
 	return (m_type);
-}
-
-void			Block::setX(unsigned int x)
-{
-	m_x = x;
-}
-
-void			Block::setY(unsigned int y)
-{
-	m_y = y;
 }
 
 void			Block::setType(Block::Type type)
@@ -41,6 +22,10 @@ void			Block::setType(Block::Type type)
 	m_type = type;
 }
 
+unsigned int	Block::blockSize() const
+{
+	return (BLOCK_SIZE); // -> 32
+}
 
 /* future stuffs
  *

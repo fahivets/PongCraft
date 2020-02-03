@@ -2,7 +2,8 @@ NAME = PongCraft
 
 SRC     := 	main.cpp \
 			Block.cpp \
-
+			Platform.cpp \
+			Movable.cpp \
 			
 
 OBJ     := $(SRC:.cpp=.o)
