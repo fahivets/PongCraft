@@ -1,15 +1,16 @@
 /*
-** BlockFactory.hpp
+** namespace BlockFactory.hpp
 */
 
-#pragma once
+#ifndef BLOCKFACTORY_HPP
+# define BLOCKFACTORY_HPP
 #include <memory>
 #include "Block.hpp"
 
-namespace					BlockFactory
+namespace	BlockFactory
 {
 
-	std::shared_ptr<Block>	createBlock(unsigned int x, unsigned int y, Block::Type type)
+	std::shared_ptr<Block>	createBlock(float x, float y, Block::Type type)
 	{
 		return (std::make_shared<Block>(x, y, type));
 	}
@@ -19,4 +20,6 @@ namespace					BlockFactory
 		return (std::make_shared<Block>(type));
 	}
 
-} /* end namespace BlockFactory */
+}	/*	end namespace BlockFactory	*/
+
+#endif	/*	BLOCKFACTORY_HPP	*/

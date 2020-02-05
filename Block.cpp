@@ -1,16 +1,31 @@
 /*
-**
-**
+**	Block.cpp
+**	TODO:  может нужно будет в факторы передавать позицию
 */
-#define BLOCK_SIZE 32 //TODO: think about that
+
 #include "Block.hpp"
+#include "Globals.hpp"
 
-// может нужно будет в факторы передавать позицию
-Block::Block(Block::Type type) : Movable(0, 0), m_type(type)
+Block::Block() : GameObject(0, 0), m_type(Block::Type::Invalid)
 {}
 
-Block::Block(unsigned int x, unsigned int y, Block::Type type) : Movable(x, y), m_type(type)
+Block::Block(Block::Type type) : GameObject(0, 0), m_type(type)
 {}
+
+Block::Block(float x, float y, Block::Type type) : GameObject(x, y), m_type(type)
+{}
+
+Block::Block(Block const &src) : m_type(src.m_type)
+{}
+
+Block	&Block::operator=(Block const &rhs)
+{
+	if (this != &rhs)
+	{
+		m_type = rhs.m_type;
+	}
+	return (*this);
+}
 
 Block::Type		Block::getType() const
 {
@@ -24,7 +39,7 @@ void			Block::setType(Block::Type type)
 
 unsigned int	Block::blockSize() const
 {
-	return (BLOCK_SIZE); // -> 32
+	return (Globals::BLOCK_SIZE);
 }
 
 /* future stuffs
@@ -33,7 +48,6 @@ unsigned int	Block::mass() const
 {
 	return (blockTypeToMass(m_type));
 }
-
 
 unsigned int Block::blockTypeToMass(Block::Type type)
 {

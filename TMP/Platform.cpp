@@ -5,18 +5,16 @@
 
 #include "Platform.hpp"
 #include "BlockFactory.hpp"
-
-
-#include <iostream> // DELL
+#include "Globals.hpp"
 
 Platform::Platform()
 {
-	
-	for (auto &it: m_platformArray)
+	/*
+	for (auto it: m_platformArray)
 	{
 		it = BlockFactory::createBlock(Block::Type::Invalid);
 	}
-	
+	*/
 }
 
 Platform::Platform(float x, float y) : GameObject(x, y)
@@ -26,10 +24,10 @@ Platform::Platform(float x, float y) : GameObject(x, y)
 	float			stepY = startY;
 	unsigned int	block_count = 0;
 	
-	for (auto &it: m_platformArray)
+	for (auto it: m_platformArray)
 	{
 		++block_count;
-		it = BlockFactory::createBlock(stepX, stepY, Block::Type::Invalid);
+		setBlockPos(it, stepX, stepY);
 		if (block_count % 5 == 0)
 		{
 			stepX += Globals::BLOCK_SIZE;
@@ -39,10 +37,11 @@ Platform::Platform(float x, float y) : GameObject(x, y)
 			stepY += Globals::BLOCK_SIZE;
 	}
 	
-	m_platformArray[1]->setType(Block::Type::White);
-	m_platformArray[2]->setType(Block::Type::White);
-	m_platformArray[3]->setType(Block::Type::White);
+	m_platformArray[1] = BlockFactory::createBlock(Block::Type::White);
+	m_platformArray[2] = BlockFactory::createBlock(Block::Type::White);
+	m_platformArray[3] = BlockFactory::createBlock(Block::Type::White);
 }
+
 
 std::shared_ptr<Block>	Platform::getBlock(unsigned int id) const
 {
@@ -60,15 +59,6 @@ void					Platform::setBlockPos(std::shared_ptr<Block> block, float x, float y)
 
 void					Platform::setBlock(unsigned int id, Block::Type type)
 {
-	m_platformArray[id] = BlockFactory::createBlock(type);
+	m_platformArray[id] = BlockFactory::createBlock(getX(), getY(), type);
 }
 
-/* dell after	*/
-void	Platform::print()
-{
-	for (auto it: m_platformArray)
-	{
-		std::cout << "x = " << it->getX() << " y = " << it->getY() << std::endl;
-	}
-
-}

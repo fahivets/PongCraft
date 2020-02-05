@@ -1,14 +1,19 @@
 NAME = PongCraft
 
 SRC     := 	main.cpp \
+			Display.cpp \
+			Input.cpp \
 			Block.cpp \
 			Platform.cpp \
-			Movable.cpp \
-			
+			Ball.cpp \
+			GameObject.cpp \
+			Game.cpp \
+			test.cpp \
+
 
 OBJ     := $(SRC:.cpp=.o)
 
-G++		:= g++ -std=c++11 \
+G++		:= g++ -g -std=c++11 \
 			-I Frameworks/SDL2.framework/Versions/A/Headers \
 			-F Frameworks/ \
 			-I Frameworks/SDL2_ttf.framework/Versions/A/Headers \
