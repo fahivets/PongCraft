@@ -5,6 +5,7 @@
 
 #ifndef GAMEOBJECT_HPP
 # define GAMEOBJECT_HPP
+# include "IGameObjectVisitor.hpp"
 
 class		GameObject
 {
@@ -14,11 +15,14 @@ public:
 	GameObject(GameObject const &src);
 	GameObject &operator=(GameObject const &rhs);
 	virtual ~GameObject() = default;
+	
+	virtual void	accept(const IGameObjectVisitor &visitor) = 0;
 
 	float	getX() const;
 	float	getY() const;
 	void	setX(float x);
 	void	setY(float y);
+	
 
 private:
 	float	m_x;

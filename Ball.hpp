@@ -1,6 +1,6 @@
 /*
 ** Ball.hpp
-** TODO make Vector2d
+** TODO make Vector2D<float> ?
 */
 
 #ifndef BALL_HPP
@@ -21,6 +21,8 @@ public:
 	void	setDirX(float dirX);
 	void	setDirY(float dirY);
 	void	setVelocity(float vel);
+
+	void	accept(IGameObjectVisitor const &visitor);
 
 private:
 	float	m_dirX;

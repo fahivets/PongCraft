@@ -8,12 +8,16 @@ SRC     := 	main.cpp \
 			Ball.cpp \
 			GameObject.cpp \
 			Game.cpp \
-			test.cpp \
+			DrawVisitor.cpp \
+			Player.cpp \
+			LeatherBag.cpp \
+			Menu.cpp \
+test.cpp \
 
 
 OBJ     := $(SRC:.cpp=.o)
 
-G++		:= g++ -g -std=c++11 \
+G++		:= g++ -g -std=c++14 \
 			-I Frameworks/SDL2.framework/Versions/A/Headers \
 			-F Frameworks/ \
 			-I Frameworks/SDL2_ttf.framework/Versions/A/Headers \

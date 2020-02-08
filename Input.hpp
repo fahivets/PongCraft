@@ -1,6 +1,6 @@
 /*
 ** Input.hpp
-**
+**	TODO: add SDL_PoolEvent
 */
 
 #ifndef INPUT_HPP
@@ -11,15 +11,12 @@
 class		Input
 {
 public:
-    Input();
-    ~Input();
-
     bool	isKey(SDL_Keycode key);
     void	buttonPressed(SDL_Keycode key);
     void	buttonReleased(SDL_Keycode key);
 
 private:
-    std::map <SDL_Keycode, bool>	m_keysPressed;
+    std::map <SDL_Keycode, bool>	m_keysPressedMap;
 };
 
 #endif	/*	INPUT_HPP	*/

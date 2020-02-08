@@ -29,6 +29,7 @@ public:
 	Block::Type		getType() const;
 	void			setType(Block::Type type);
 	unsigned int	blockSize() const;
+	void			accept(IGameObjectVisitor const &visitor);
 
 //	unsigned int	mass() const;
 

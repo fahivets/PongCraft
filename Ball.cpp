@@ -47,3 +47,9 @@ void	Ball::setVelocity(float velocity)
 {
 	m_velocity = velocity;
 }
+
+
+void	Ball::accept(IGameObjectVisitor const &visitor)
+{
+	visitor.visit(*this);
+}

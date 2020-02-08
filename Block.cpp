@@ -42,6 +42,11 @@ unsigned int	Block::blockSize() const
 	return (Globals::BLOCK_SIZE);
 }
 
+void			Block::accept(IGameObjectVisitor const &visitor)
+{
+	visitor.visit(*this);
+}
+
 /* future stuffs
  *
 unsigned int	Block::mass() const

@@ -1,6 +1,6 @@
 /*
-** Platform.cpp
-** TODO: protect: id, x and y cords;
+** Platform.cpp 
+** TODO: protect: id, x and y cords; change setBlock? how thake array?
 */
 
 #include "Platform.hpp"
@@ -52,16 +52,30 @@ std::shared_ptr<Block>	Platform::getBlock(unsigned int id) const
 		return (nullptr);
 }
 
+
+std::array<std::shared_ptr<Block>, Globals::PLATFORM_MAX_SIZE>	Platform::getArray() const
+{
+	return (m_platformArray);
+}
+
 void					Platform::setBlockPos(std::shared_ptr<Block> block, float x, float y)
 {
 	block->setX(x);
 	block->setY(y);
 }
 
+/*	think here	*/
 void					Platform::setBlock(unsigned int id, Block::Type type)
 {
 	m_platformArray[id] = BlockFactory::createBlock(type);
 }
+
+void					Platform::accept(IGameObjectVisitor const &visitor)
+{
+	visitor.visit(*this);
+}
+
+
 
 /* dell after	*/
 void	Platform::print()

@@ -1,34 +1,32 @@
 /*
 **	Display.hpp
-**	SDL class
+**	SDL class TODO: smart_ptr on SDL?
 */
 
 #ifndef DISPLAY_HPP
 # define DISPLAY_HPP
 
 # include <SDL2/SDL.h>
-//# include <SDL_ttf.h>
-# include <SDL_image.h>
-# include <SDL_mixer.h>
 # include <memory>
+# include "DrawVisitor.hpp"
 
 class			Display
 {
 public:
 	Display();
 	~Display();
-	
-	bool			createWindow();
-	bool			createRenderer();
-//	bool			loadTextures();
-	bool			init();
-	
+
+	const DrawVisitor& getDrawVisitor();
+
 private:
-	unsigned int	m_w;
-	unsigned int	m_h;
+	void			initSDL();
+	void			createWindow();
+	bool			createRenderer();
+	
 	SDL_Window		*m_win;
-	SDL_Renderer	*m_ren;
-//	SDL_Surface		*m_textures;
+	DrawVisitor		m_drawVisitor;
+	unsigned int	m_w; //del?
+	unsigned int	m_h; // del?
 };
 
 #endif	/*	DISPLAY_HPP	*/

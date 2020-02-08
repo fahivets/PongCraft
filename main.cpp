@@ -6,12 +6,11 @@
 /*   By: dsamarsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 15:37:36 by dsamarsk          #+#    #+#             */
-/*   Updated: 2020/02/05 19:49:46 by dsamarsk         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:25:11 by dsamarsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Display.hpp"
 #include "Game.hpp"
 /* TEST	*/
 void		test_block();
@@ -32,7 +31,7 @@ int			main(void)
 
 	Game	PongCraft;
 	
-	PongCraft.init();
+	PongCraft.gameLoop();
 
 	system("leaks -q PongCraft");
 	return (0);
