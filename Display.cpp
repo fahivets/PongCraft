@@ -13,7 +13,7 @@ Display::Display() : m_w(Globals::WIN_W), m_h(Globals::WIN_H)
 	createWindow();
 
 	if (createRenderer())
-		if (!m_drawVisitor.loadTextures())
+		if (!m_drawVisitor.loadTextures() || !m_drawVisitor.loadFont())
 			assert(false && "opss!"); // TODO
 }
 
@@ -50,4 +50,3 @@ const DrawVisitor&		Display::getDrawVisitor()
 {
 	return (m_drawVisitor);
 }
-

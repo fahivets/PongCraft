@@ -7,7 +7,7 @@
 LeatherBag::LeatherBag()
 {}
 
-LeatherBag::LeatherBag(Player::Slot slot) : Player(slot)
+LeatherBag::LeatherBag(PlayerSlot slot) : Player(slot)
 {}
 
 LeatherBag::~LeatherBag()

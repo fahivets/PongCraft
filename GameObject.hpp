@@ -16,7 +16,7 @@ public:
 	GameObject &operator=(GameObject const &rhs);
 	virtual ~GameObject() = default;
 	
-	virtual void	accept(const IGameObjectVisitor &visitor) = 0;
+	virtual void	accept(IGameObjectVisitor const &visitor) = 0;
 
 	float	getX() const;
 	float	getY() const;

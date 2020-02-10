@@ -11,7 +11,7 @@ class		LeatherBag : public Player
 {
 public:
 	LeatherBag();
-	LeatherBag(Player::Slot slot);
+	LeatherBag(PlayerSlot slot);
 	~LeatherBag();
 
 	bool		isHuman();

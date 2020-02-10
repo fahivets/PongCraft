@@ -11,9 +11,8 @@ SRC     := 	main.cpp \
 			DrawVisitor.cpp \
 			Player.cpp \
 			LeatherBag.cpp \
+			PhysicsManager.cpp \
 			Menu.cpp \
-test.cpp \
-
 
 OBJ     := $(SRC:.cpp=.o)
 

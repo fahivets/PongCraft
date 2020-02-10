@@ -2,6 +2,7 @@
 **	Game.cpp
 */
 
+#include <chrono>
 #include "Game.hpp"
 #include "Input.hpp"
 #include "Menu.hpp"
@@ -12,7 +13,9 @@
 
 #include "LeatherBag.hpp"
 
+//dell after
 #include <iostream>
+#include "PhysicsManager.hpp"
 
 Game::Game() : m_isRunning(false)
 {}
@@ -25,77 +28,63 @@ bool	Game::running()
 	return (m_isRunning);
 }
 
-void	Game::draw()
+void	Game::quit()
 {
+	m_isRunning = false;
 }
 
 void	Game::gameLoop()
 {
-	SDL_Event event;
-	Input input;
-	Menu	menu;
+	SDL_Event	event;
+	Input		input;
+	Menu		menu;
+	PhysicsManager	physicsManager;
 
-/*	test VISITOR	*/
-//	GameLogic gamelogic;
-
-	Platform	test1(0, 300);
-	Ball		test2;
-	Block		test3;
-/*	end test visitor	*/
-	auto p1 = std::make_shared<LeatherBag>(Player::Slot::Left);
-//	Player p1(Player::Slot::Left);
-
+	auto ball = std::make_shared<Ball>();
+	auto p1 = std::make_shared<LeatherBag>(PlayerSlot::Left);
+	auto p2 = std::make_shared<LeatherBag>(PlayerSlot::Right);
+	float	dt = 0.0f;
 	m_isRunning = true;
-
+	
 	while (running())
 	{
-/*		input.handleInput();
-		auto currentInput = input.currentInput();
-		if (std::find(currentInput.b, currentInput.e, [](InputEvent ev) {
-			return ev == Quit;
-		 }) != currentInput.e) {
-			m_isRunning = false;
-		}
-		gameLogic.onInputRecieved();
-*/
+		auto startTime = std::chrono::high_resolution_clock::now();
+
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_QUIT)
-			{
-				m_isRunning = false;
-			}
+				quit();
 			else if (event.type == SDL_KEYDOWN)
-			{
 				input.buttonPressed(event.key.keysym.sym);
-			}
 			else if (event.type == SDL_KEYUP)
-			{
 				input.buttonReleased(event.key.keysym.sym);
-			}
 			if (input.isKey(SDLK_ESCAPE))
-				m_isRunning = false;
-
-			if (input.isKey(SDLK_SPACE))
-			{
-				p1->getPlatform()->accept(m_display.getDrawVisitor());
-			//	test1.accept(display.getDrawVisitor());
-			//	test1.accept(*drawVisitor);
-			//	test2.accept(drawVisitor);
-			//	test3.accept(drawVisitor);	
-			}
-			
-			if (input.isKey(SDLK_UP))
-			{
+				quit();		
+			if (input.isKey(SDLK_w))
 				p1->moveUp();
-			}
+			if (input.isKey(SDLK_s))
+				p1->moveDown();	
+			if (input.isKey(SDLK_UP))
+				p2->moveUp();
 			if (input.isKey(SDLK_DOWN))
-			{
-				p1->moveDown();
-			}
-		}
-
+				p2->moveDown();
+		}	
+		ball->move(dt);
+	
+		/*	collision	*/
+		physicsManager.ballCollision(ball, p1, p2);
+		physicsManager.checkBallPlayerCollision(ball, p1);
+		physicsManager.checkBallPlayerCollision(ball, p2);
+	
+		/*	draw	*/
 		p1->getPlatform()->accept(m_display.getDrawVisitor());
-		draw();
-
+		p2->getPlatform()->accept(m_display.getDrawVisitor());
+		p1->accept(m_display.getDrawVisitor());
+		p2->accept(m_display.getDrawVisitor());
+		ball->accept(m_display.getDrawVisitor());
+		m_display.getDrawVisitor().drawScreen();
+	
+		auto stopTime = std::chrono::high_resolution_clock::now();
+		dt = std::chrono::duration<float, std::chrono::milliseconds::period>(stopTime - startTime).count();
 	}	/*	end gameLoop()	*/
 }

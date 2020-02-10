@@ -1,6 +1,6 @@
 /*
 **	Game.hpp
-**	TODO check what need includet
+**	
 */
 
 #ifndef GAME_HPP
@@ -14,8 +14,9 @@ public:
 	~Game();
 
 	bool	running();
-	void	draw();
+	void	quit();
 	void	gameLoop();
+	
 
 private:
 	bool	m_isRunning;

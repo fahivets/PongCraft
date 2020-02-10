@@ -11,7 +11,7 @@
 class				Block : public GameObject
 {
 public:
-	enum class		Type
+	enum class	Type
 	{
 		Invalid,
 		White,
