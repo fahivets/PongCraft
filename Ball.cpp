@@ -1,6 +1,6 @@
 /*
 ** Ball.cpp
-** TODO set start param
+** 
 */
 
 #include "Ball.hpp"
@@ -66,8 +66,25 @@ void	Ball::move(float dt)
 	setY(getY() + m_dirY * speed);
 }
 
+void	Ball::startLeft(float x, float y)
+{
+	setX(x);
+	setY(y);
+	setDirX(1);
+	setDirY(0);
+}
+
+void	Ball::startRight(float x, float y)
+{
+	setX(x);
+	setY(y);
+	setDirX(-1);
+	setDirY(0);
+}
+
 void	Ball::reset()
 {
 	setX(Globals::WIN_CENTER_X);
    	setY(Globals::WIN_CENTER_Y);
+	setDirY(0);
 }

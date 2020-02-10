@@ -19,17 +19,17 @@ public:
 	Player(PlayerSlot slot);
 	virtual ~Player();
 
-	void		moveUp();
-	void		moveDown();
-	int			getScore() const;
-	PlayerSlot	getSlot() const;
-	void		setScore(int score);
-	void		setSlot(PlayerSlot slot);
+	virtual	void		moveUp() = 0;
+	virtual void		moveDown() = 0;
+	int					getScore() const;
+	PlayerSlot			getSlot() const;
+	void				setScore(int score);
+	void				setSlot(PlayerSlot slot);
 
 	std::shared_ptr<Platform>			getPlatform() const;
 	virtual bool		isHuman() = 0;
 
-	void					accept(IGameObjectVisitor const &visitor);
+	void				accept(IGameObjectVisitor const &visitor);
 
 private:
 	std::shared_ptr<Platform>	m_platform;

@@ -10,14 +10,13 @@
 class		LeatherBag : public Player
 {
 public:
-	LeatherBag();
+	LeatherBag() = default;
 	LeatherBag(PlayerSlot slot);
-	~LeatherBag();
+	~LeatherBag() = default;
 
-	bool		isHuman();
-
-private:
-
+	void	moveUp();
+	void	moveDown();
+	bool	isHuman();
 };
 
 #endif	/*	LEATHERBAG_HPP	*/

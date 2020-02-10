@@ -6,7 +6,6 @@
 # define TEXTUREFACTORY_HPP
 
 #include "Helper.hpp"
-
 #include <string>
 #include <SDL_image.h>
 #include <functional>

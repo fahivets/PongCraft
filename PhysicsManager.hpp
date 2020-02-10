@@ -1,6 +1,6 @@
 /*
 **	PhysicsManager.hpp
-**	TODO make check conts params?
+**
 */
 
 #ifndef PHYSICSMANAGER_HPP
@@ -11,10 +11,6 @@
 # include "Block.hpp"
 # include <memory>
 # include <cmath>
-
-class		Ball;
-class		Player;
-class		Platform;
 
 class		PhysicsManager
 {

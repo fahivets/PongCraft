@@ -1,6 +1,6 @@
 /*
 **	Platform.hpp
-**	TODO: make operator[] вместо get and set
+**
 */
 
 #ifndef PLATFORM_HPP
@@ -18,7 +18,6 @@ public:
 	using BlockPtr = std::shared_ptr<Block>;
 
 	Platform();
-//	Platform(float x, float y);
 	Platform(float x, float y, PlayerSlot slot);
 
 	~Platform() = default;
@@ -29,8 +28,6 @@ public:
 	void					setBlock(unsigned int id, Block::Type type);
 	void					accept(IGameObjectVisitor const &visitor);
 	
-	void	print(); //dell after
-
 private:
 	std::array<std::shared_ptr<Block>, Globals::PLATFORM_MAX_SIZE>	m_platformArray;
 

@@ -1,7 +1,7 @@
 /*
 **	Block class
 **	blockTypeToMass -> future stuffs
-**	TODO: did i need cr destrutor and operator=?
+**
 */
 
 #ifndef BLOCK_HPP

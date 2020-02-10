@@ -26,13 +26,9 @@ public:
 		Red
 	};
 
-	DrawVisitor();
-	~DrawVisitor();
-
 	void	visit(Platform const &platform) const;
 	void	visit(Ball const &ball) const;
 	void	visit(Block const &block) const;
-	void	visit(Menu const &menu) const; //TODO dell
 	void	visit(Player const &player) const;
 
 	bool	loadTextures();
@@ -41,10 +37,9 @@ public:
 	void	drawScreen() const;
 
 private:
-	std::unique_ptr<SDL_Renderer, std::function<void(SDL_Renderer*)>> m_renderer;	
-	std::map<TextureType, SDLTextureUPtr>	m_textureMap;
-	std::unique_ptr<TTF_Font, std::function<void(TTF_Font*)>> m_scoreFont;	
-	
+	std::unique_ptr<SDL_Renderer, std::function<void(SDL_Renderer*)>> 	m_renderer;	
+	std::unique_ptr<TTF_Font, std::function<void(TTF_Font*)>>			m_scoreFont;	
+	std::map<TextureType, SDLTextureUPtr>								m_textureMap;	
 };
 
 #endif	/*	DRAWVISITOR_HPP	*/

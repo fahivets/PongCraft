@@ -12,11 +12,11 @@ SRC     := 	main.cpp \
 			Player.cpp \
 			LeatherBag.cpp \
 			PhysicsManager.cpp \
-			Menu.cpp \
+			AIPlayer.cpp \
 
 OBJ     := $(SRC:.cpp=.o)
 
-G++		:= g++ -g -std=c++14 \
+G++		:= g++ -stdlib=libc++ -arch x86_64 -std=c++14 \
 			-I Frameworks/SDL2.framework/Versions/A/Headers \
 			-F Frameworks/ \
 			-I Frameworks/SDL2_ttf.framework/Versions/A/Headers \
@@ -33,8 +33,6 @@ FLAGS 	:= -rpath Frameworks/ \
 			-framework SDL2_ttf \
 			-framework SDL2_image \
 			-framework SDL2_mixer
-
-#-lncurses
 
 all: $(NAME)
 

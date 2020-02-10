@@ -14,7 +14,7 @@ Display::Display() : m_w(Globals::WIN_W), m_h(Globals::WIN_H)
 
 	if (createRenderer())
 		if (!m_drawVisitor.loadTextures() || !m_drawVisitor.loadFont())
-			assert(false && "opss!"); // TODO
+			assert(false && "opss!");
 }
 
 Display::~Display()
@@ -37,7 +37,6 @@ void	Display::createWindow()
 	if (m_win == nullptr)
 	{
 		std::cerr << "[SDL_ERROR] " << SDL_GetError() << std::endl;
-		SDL_Quit();
 	}
 }
 

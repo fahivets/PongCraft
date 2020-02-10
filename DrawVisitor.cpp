@@ -11,12 +11,6 @@
 #include <string>
 #include <iostream>
 
-DrawVisitor::DrawVisitor()
-{}
-
-DrawVisitor::~DrawVisitor()
-{}
-
 void		DrawVisitor::visit(Platform const &platform) const
 {
  	for (auto block : platform.getArray())
@@ -45,19 +39,12 @@ void		DrawVisitor::visit(Ball const &ball) const
 	};
 
 	auto *rawTexturePtr = m_textureMap.at(TextureType::Red).get(); 
-	SDL_RenderCopy(m_renderer.get(), rawTexturePtr, NULL, &rect); 
-
+	SDL_RenderCopy(m_renderer.get(), rawTexturePtr, NULL, &rect);
 }
 
 void		DrawVisitor::visit(Block const &block) const
 {
 	std::cout << "Visit and draw BLOCK" << std::endl;
-}
-
-void		DrawVisitor::visit(Menu const &menu) const
-{
-	std::cout << "Visit and draw MENU" << std::endl;
-
 }
 
 void	DrawVisitor::visit(Player const &player) const
@@ -142,7 +129,7 @@ bool	DrawVisitor::loadFont()
 void	DrawVisitor::drawScreen() const
 {
 	SDL_SetRenderDrawColor(m_renderer.get(), 255, 255, 255, 0xFF);
-	for (int y = 0; y < Globals::WIN_H; ++y)
+	for (unsigned int y = 0; y < Globals::WIN_H; ++y)
 	{
 		if (y % 5)
 		{

@@ -1,6 +1,6 @@
 /*
-** Input.hpp
-**	TODO: add SDL_PoolEvent
+**	Input.hpp
+**
 */
 
 #ifndef INPUT_HPP

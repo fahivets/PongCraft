@@ -1,6 +1,6 @@
 /*
 **	Display.hpp
-**	SDL class TODO: smart_ptr on SDL?
+**	SDL class
 */
 
 #ifndef DISPLAY_HPP
@@ -25,8 +25,8 @@ private:
 	
 	SDL_Window		*m_win;
 	DrawVisitor		m_drawVisitor;
-	unsigned int	m_w; //del?
-	unsigned int	m_h; // del?
+	unsigned int	m_w;
+	unsigned int	m_h;
 };
 
 #endif	/*	DISPLAY_HPP	*/

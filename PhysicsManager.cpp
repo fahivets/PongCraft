@@ -1,5 +1,5 @@
 /*
-**	PhysicsManager.cpp TODO describe magic nambers in globals namespace
+**	PhysicsManager.cpp
 */
 
 #include "PhysicsManager.hpp"
@@ -13,15 +13,15 @@ bool	PhysicsManager::checkBallPlayerCollision(Ball::Ptr &ball, std::shared_ptr<P
 
 bool	PhysicsManager::blockCollision(Ball::Ptr &ball, Platform::BlockPtr &block)
 {
-	float ballLeft = ball->getX() - 8;
-	float ballRight = ball->getX() + 8;
-	float ballTop = ball->getY() - 8;
-	float ballBottom = ball->getY() + 8;
+	float ballLeft = ball->getX() - Globals::BALL_SIZE / 2;
+	float ballRight = ball->getX() + Globals::BALL_SIZE / 2;
+	float ballTop = ball->getY() - Globals::BALL_SIZE / 2;
+	float ballBottom = ball->getY() + Globals::BALL_SIZE / 2;
 
 	float blockLeft = block->getX();
-	float blockRight = block->getX() + 32;
+	float blockRight = block->getX() + Globals::BLOCK_SIZE;
 	float blockTop = block->getY();
-	float blockBottom = block->getY() + 32;
+	float blockBottom = block->getY() + Globals::BLOCK_SIZE;
 
 	if (ballLeft >= blockRight)
 	{
@@ -45,8 +45,8 @@ bool	PhysicsManager::blockCollision(Ball::Ptr &ball, Platform::BlockPtr &block)
 bool	PhysicsManager::PlayerCollision(Ball::Ptr &ball, std::shared_ptr<Player> const &player)
 {
 	auto 	platform = player->getPlatform();
-	float	platformHighPoint = platform->getY() - 80;
-	float	platformLowPoint = platform->getY() + 80;
+	float	platformHighPoint = platform->getY() - Globals::PLATFORM_H / 2;
+	float	platformLowPoint = platform->getY() + Globals::PLATFORM_H / 2;
 
 	if (ball->getY() < platformHighPoint || ball->getY() > platformLowPoint)	
 		return (false);
@@ -88,11 +88,13 @@ void	PhysicsManager::ballCollision(Ball::Ptr &ball,
 	if (ball->getX() <= 16)
 	{	
 		p1->setScore(p1->getScore() + 1);
-		ball->reset();
+		ball->startLeft(p1->getPlatform()->getX() + Globals::PLATFORM_W,
+				p1->getPlatform()->getY());
 	}
 	if (ball->getX() >= 1183)
 	{
 		p2->setScore(p2->getScore() + 1);	
-		ball->reset();
+		ball->startRight(p2->getPlatform()->getX() - Globals::PLATFORM_W,
+				p2->getPlatform()->getY());
 	}
 }
